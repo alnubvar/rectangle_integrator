@@ -5,8 +5,8 @@ require_relative "lib/triangle_integrator/version"
 Gem::Specification.new do |spec|
   spec.name = "triangle_integrator"
   spec.version = TriangleIntegrator::VERSION
-  spec.authors = ["TODO: Write your name"]
-  spec.email = ["TODO: Write your email address"]
+  spec.authors = ["Kirkina"]
+  spec.email = ["kirkina@sfedu.ru"]
 
   spec.summary = "TODO: Write a short summary, because RubyGems requires one."
   spec.description = "TODO: Write a longer description or delete this line."
