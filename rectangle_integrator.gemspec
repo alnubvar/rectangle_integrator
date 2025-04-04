@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/triangle_integrator/version"
+require_relative "lib/rectangle_integrator/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "triangle_integrator"
-  spec.version = TriangleIntegrator::VERSION
+  spec.name = "rectangle_integrator"
+  spec.version = RectangleIntegrator::VERSION
   spec.authors = ["TODO: Write your name"]
   spec.email = ["TODO: Write your email address"]
 

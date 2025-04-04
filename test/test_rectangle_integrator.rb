@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class TestTriangleIntegrator < Minitest::Test
+class TestRectangleIntegrator < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::TriangleIntegrator::VERSION
+    refute_nil ::RectangleIntegrator::VERSION
   end
 
   def test_it_does_something_useful
