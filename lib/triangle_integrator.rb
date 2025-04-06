@@ -14,5 +14,9 @@ module TriangleIntegrator
     def left_rectangle
       (@b - @a)* @func.call(@a)
     end
+
+    def right_rectangle
+      (@b - @a)* @func.call(@b)
+    end
   end
 end
