@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "triangle_integrator/version"
+require_relative "rectangle_integrator/version"
 
-module TriangleIntegrator
+module RectangleIntegrator
   class Error < StandardError; end
   class RectangleIntegrator
     def initialize(func, a, b)
@@ -24,6 +24,3 @@ module TriangleIntegrator
     end
   end
 end
-
-
-

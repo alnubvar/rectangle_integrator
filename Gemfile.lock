@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    triangle_integrator (0.1.0)
+    rectangle_integrator (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -47,7 +47,7 @@ DEPENDENCIES
   minitest (~> 5.16)
   rake (~> 13.0)
   rubocop (~> 1.21)
-  triangle_integrator!
+  rectangle_integrator!
 
 BUNDLED WITH
    2.5.22

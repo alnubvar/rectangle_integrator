@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in triangle_integrator.gemspec
+# Specify your gem's dependencies in rectangle_integrator.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
