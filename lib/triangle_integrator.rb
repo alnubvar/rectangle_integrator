@@ -18,5 +18,9 @@ module TriangleIntegrator
     def right_rectangle
       (@b - @a)* @func.call(@b)
     end
+
+    def average_rectangle
+      (@b - @a)* @func.call((@a+@b)/2)
+    end
   end
 end
