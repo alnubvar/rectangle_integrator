@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "rectangle_integrator/version"
+require_relative "version"
 
 module RectangleIntegrator
   class Error < StandardError; end
@@ -38,7 +38,7 @@ module RectangleIntegrator
     end
     
     def validate_interval
-      if a >= b
+      if a > b
         raise ArgumentError, "Wrong interval 'a' must be less then 'b'"
       end
     end

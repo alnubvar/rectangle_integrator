@@ -46,8 +46,8 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.16)
   rake (~> 13.0)
-  rubocop (~> 1.21)
   rectangle_integrator!
+  rubocop (~> 1.21)
 
 BUNDLED WITH
    2.5.22
