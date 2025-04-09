@@ -1,11 +1,27 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "bundler/setup"
-require "rectangle_integrator"
+require_relative "../lib/rectangle_integrator"
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+puts "Введите функцию для интегрирования (например: x**2 или Math.sin(x)):"
+print "f(x) = "
+func_input = gets.chomp
+func = ->(x) { eval(func_input) }
 
-require "irb"
-IRB.start(__FILE__)
+puts "\nВведите границы интегрирования:"
+print "a = "
+a = gets.chomp.to_f
+print "b = "
+b = gets.chomp.to_f
+
+print "\nВведите количество прямоугольников (n): "
+n = gets.chomp.to_i
+
+puts "\nВычисление...\n\n"
+
+begin
+  integrator = RectangleIntegrator::RectangleIntegrator.new(func, a, b)
+  integrator.print_results(n)
+rescue StandardError => e
+  puts "Ошибка: #{e.message}"
+end
