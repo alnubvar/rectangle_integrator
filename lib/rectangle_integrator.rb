@@ -47,7 +47,6 @@ module RectangleIntegrator
     def print_results(n)
       puts "Интегрирование на интервале [#{a}, #{b}] с #{n} прямоугольником(ами)"
       puts "-" * 50
-
       left = left_rectangle
       right = right_rectangle
       average = average_rectangle

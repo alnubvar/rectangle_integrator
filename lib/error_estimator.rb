@@ -5,6 +5,8 @@ module RectangleIntegrator
   module ErrorEstimator
 
     def self.left_rectangle_error(f, a, b, n, samples: 1000)
+      raise ArgumentError, "a must be <= b" if a > b
+      raise ZeroDivisionError, " n can not be zero" if n == 0
       h = (b - a) / samples.to_f
       max_derivative = (0..samples).map do |i|
         x = a + i * h
@@ -14,6 +16,8 @@ module RectangleIntegrator
     end
 
     def self.right_rectangle_error(f, a, b, n, samples: 1000)
+      raise ArgumentError, "a must be <= b" if a > b
+      raise ZeroDivisionError, " n can not be zero" if n == 0
       h = (b - a) / samples.to_f
       max_derivative = (0..samples).map do |i|
         x = a + i * h
@@ -23,6 +27,8 @@ module RectangleIntegrator
     end
 
     def self.midpoint_rectangle_error(f, a, b, n, samples: 1000)
+      raise ArgumentError, "a must be <= b" if a > b
+      raise ZeroDivisionError, " n can not be zero" if n == 0
       h = (b - a) / samples.to_f
       max_second_derivative = (0..samples).map do |i|
         x = a + i * h
