@@ -3,9 +3,6 @@
 rectangle_integrator - это gem для численного интегрирования по формуле левых, средних и правых прямоугольников.
 Используется для приближённого вычисления определённых интегралов и погрешностей.
 
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rectangle_integrator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
 ## Установка
 
 Для установки `rectangle_integrator` выполните следующие шаги:
@@ -32,7 +29,7 @@ gem 'rectangle_integrator', '~> 0.1.0'
 ```bash
 bundle install
 ```
-4) 2 и 3 пункты приведут к одному и тому же результату - вы установите `rectangle_integrator`.
+4) Второй и третий пункты приведут к одному и тому же результату - вы установите `rectangle_integrator`.
 После установки вы можете ипользовать его в вашем проекте:
 
 ```ruby
@@ -46,7 +43,10 @@ require "rectangle_integrator"
 Чтобы определить интеграл, который нужно вычислить, необходимо создать объект класса `RectangleIntegrator::IntegralSolver`.
 
 Синтаксис: `RectangleIntegrator::IntegralSolver.new(some_function, left_boundary, right_boundary)`. 
-`some_function` - анонимная функция/процедура, к которой возможно применить вызов `some_function.call()` и которая возвращает некоторое численное значениею.`left_boundary`, `right_boundary` - пределы интегрирования, причем `left_boundary` < `right_boundary`.
+
+`some_function` - анонимная функция/процедура, к которой возможно применить вызов `some_function.call()` и которая возвращает некоторое численное значение.
+
+`left_boundary`, `right_boundary` - пределы интегрирования, причем `left_boundary` < `right_boundary`.
 
 Пример:
 ```ruby
@@ -81,6 +81,7 @@ puts integral_to_solve2.mid_rectangle # результат 3.141592653589793, т
 Возможно вывести в консоль результаты выполнения всех трех функций с вычисленными погрешностями. Для этого используем метод `print_results`.
 
 Синтаксис: `print_results(integer)`. 
+
 `integer` - это число разбиений изначального отрезка интегрирования на промежутки, в которых будут вичисляться производные подынтегральной функции. Этот процесс необходим для вычисления погрешности. Большее количество разбиений позволит точнее вычислить погрешность.
 
 ```ruby
