@@ -5,7 +5,7 @@ require_relative "error_estimator"
 
 module RectangleIntegrator
   class Error < StandardError; end
-  class RectangleIntegrator
+  class IntegralSolver
     attr_reader :func, :a, :b
 
     def initialize(func, a, b)
@@ -51,9 +51,9 @@ module RectangleIntegrator
       right = right_rectangle
       average = average_rectangle
 
-      left_err = RectangleIntegrator::ErrorEstimator.left_rectangle_error(func, a, b, n)
-      right_err = RectangleIntegrator::ErrorEstimator.right_rectangle_error(func, a, b, n)
-      mid_err = RectangleIntegrator::ErrorEstimator.midpoint_rectangle_error(func, a, b, n)
+      left_err = ErrorEstimator.left_rectangle_error(func, a, b, n)
+      right_err = ErrorEstimator.right_rectangle_error(func, a, b, n)
+      mid_err = ErrorEstimator.midpoint_rectangle_error(func, a, b, n)
 
       puts "Левый прямоугольник: #{left.round(10)} | Погрешность ≤ #{left_err.round(10)}"
       puts "Правый прямоугольник: #{right.round(10)} | Погрешность ≤ #{right_err.round(10)}"

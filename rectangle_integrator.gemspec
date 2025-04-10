@@ -5,11 +5,11 @@ require_relative "lib/version"
 Gem::Specification.new do |spec|
   spec.name = "rectangle_integrator"
   spec.version = RectangleIntegrator::VERSION
-  spec.authors = ["Gennadii Mikhailov"]
+  spec.authors = ["Albert Nubaryan", "Gennadii Mikhailov", "Julia Kirkina", "Vladimir Grushin"]
   spec.email = ["bennadiigykin@mail.ru"]
 
   spec.summary = "Calculation of a definite integral using numerical methods."
-  spec.description = "This gem provides an opportunity to calculate a definite integral using the rectangle method, and it's also possible to use more accurate compound formulas of the rectangle method."
+  spec.description = "This gem provides an opportunity to calculate a definite integral using the rectangle method."
   spec.homepage = "https://github.com/alnubvar/rectangle_integrator"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"

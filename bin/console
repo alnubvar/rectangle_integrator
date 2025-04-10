@@ -20,7 +20,7 @@ n = gets.chomp.to_i
 puts "\nВычисление...\n\n"
 
 begin
-  integrator = RectangleIntegrator::RectangleIntegrator.new(func, a, b)
+  integrator = RectangleIntegrator::IntegralSolver.new(func, a, b)
   integrator.print_results(n)
 rescue StandardError => e
   puts "Ошибка: #{e.message}"
