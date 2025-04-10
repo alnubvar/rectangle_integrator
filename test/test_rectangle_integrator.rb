@@ -16,15 +16,15 @@ class TestRectangleIntegrator < Minitest::Test
     assert_equal  1, result
   end
 
-  def test_average_rectangle
+  def test_mid_rectangle
     integrator = IntegralSolver.new(->(x) { x**2 }, 0, 1)
-    result = integrator.average_rectangle
+    result = integrator.mid_rectangle
     assert_equal  0.25, result
   end
 
   def test_zero_interval
     integrator = IntegralSolver.new(-> (x) {x}, 0,0)
-    result = integrator.average_rectangle
+    result = integrator.mid_rectangle
     assert_equal 0, result
   end
 

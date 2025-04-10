@@ -23,7 +23,7 @@ module RectangleIntegrator
       (@b - @a) * func.call(b)
     end
 
-    def average_rectangle
+    def mid_rectangle
       midpoint = (a + b) / 2.0
       (@b - @a) * func.call(midpoint)
     end
@@ -49,7 +49,7 @@ module RectangleIntegrator
       puts "-" * 50
       left = left_rectangle
       right = right_rectangle
-      average = average_rectangle
+      average = mid_rectangle
 
       left_err = ErrorEstimator.left_rectangle_error(func, a, b, n)
       right_err = ErrorEstimator.right_rectangle_error(func, a, b, n)

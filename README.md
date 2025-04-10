@@ -1,37 +1,119 @@
 # RectangleIntegrator
 
-TODO: Гем для численного интегрирования по формуле левых, средних и правых прямоугольников.
-Используется для приближённого вычисления определённых интегралов на основе разбиения области на треугольники.
+rectangle_integrator - это gem для численного интегрирования по формуле левых, средних и правых прямоугольников.
+Используется для приближённого вычисления определённых интегралов и погрешностей.
 
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rectangle_integrator`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-## Installation
+## Установка
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Для установки `rectangle_integrator` выполните следующие шаги:
 
-Install the gem and add to the application's Gemfile by executing:
+1) Убедитесь, что установлен Ruby
+```bash
+ruby -v
+```
+Если Ruby установлен, эта команда выведет в консоль номер версии
+
+2) Установите `Gem`:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install rectangle_integrator
 ```
+3) Если вы используете `Bundler` для управления зависимостями вашего проекта, то установить `rectangle_integrator` можно по-другому. 
+Поместите в ваш `Gemfile` следующее:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```ruby
+gem 'rectangle_integrator', '~> 0.1.0'
+```
+А затем используйте команду `bundle`:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
+```
+4) 2 и 3 пункты приведут к одному и тому же результату - вы установите `rectangle_integrator`.
+После установки вы можете ипользовать его в вашем проекте:
+
+```ruby
+require "rectangle_integrator"
+
+#ваш код, использующий возможности rectangle_integrator
 ```
 
-## Usage
+## Использование
 
-TODO: Write usage instructions here
+Чтобы определить интеграл, который нужно вычислить, необходимо создать объект класса `RectangleIntegrator::IntegralSolver`.
 
-## Development
+Синтаксис: `RectangleIntegrator::IntegralSolver.new(some_function, left_boundary, right_boundary)`. 
+`some_function` - анонимная функция/процедура, к которой возможно применить вызов `some_function.call()` и которая возвращает некоторое численное значениею.`left_boundary`, `right_boundary` - пределы интегрирования, причем `left_boundary` < `right_boundary`.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Пример:
+```ruby
+require "rectangle_integrator"
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+#Определили интеграл функции x^2 от 0 до 1
+integral_to_solve1 = RectangleIntegrator::IntegralSolver.new(->(x) {x**2}, 0, 1)
 
-## License
+#Определили интеграл функции sin(x) от 0 до PI
+integral_to_solve2 = RectangleIntegrator::IntegralSolver.new(lambda {|x| Math.sin(x)}, 0, Math::PI)
+
+#Определили интеграл функции log(x^2+2x+3) от 0 до 3
+function_to_call = Proc.new{|x| Math.log(x**2+2*x+3)}
+integral_to_solve3 = RectangleIntegrator::IntegralSolver.new(function_to_call, 0, 3)
+```
+Теперь для вычисления интеграла достаточно вызвать один из методов: `left_rectangle`, `right_rectangle`, `mid_rectangle`.
+
+Синтаксис: Методы вызываются без параметров.
+
+Пример:
+
+```ruby
+require "rectangle_integrator"
+
+#Определили интеграл функции sin(x) от 0 до Pi
+integral_to_solve2 = RectangleIntegrator::IntegralSolver.new(lambda {|x| Math.sin(x)}, 0, Math::PI)
+
+puts integral_to_solve2.left_rectangle # результат 0.0
+puts integral_to_solve2.right_rectangle # результат 3.8473413874435795e-16 - близко к 0
+puts integral_to_solve2.mid_rectangle # результат 3.141592653589793, то есть PI
+```
+Возможно вывести в консоль результаты выполнения всех трех функций с вычисленными погрешностями. Для этого используем метод `print_results`.
+
+Синтаксис: `print_results(integer)`. 
+`integer` - это число разбиений изначального отрезка интегрирования на промежутки, в которых будут вичисляться производные подынтегральной функции. Этот процесс необходим для вычисления погрешности. Большее количество разбиений позволит точнее вычислить погрешность.
+
+```ruby
+require "rectangle_integrator"
+
+#Определили интеграл функции sin(x) от 0 до Pi
+integral_to_solve2 = RectangleIntegrator::IntegralSolver.new(lambda {|x| Math.sin(x)}, 0, Math::PI)
+
+#Вызвали метод print_results, который выводит результаты вычислений и погрешности
+integral_to_solve2.print_results(500)
+```
+Результат
+
+```bash
+"Интегрирование на интервале [0, 3.141592653589793] с 500 прямоугольником(ами)
+--------------------------------------------------         
+Левый прямоугольник: 0.0 | Погрешность ≤ 0.0098696044      
+Правый прямоугольник: 0.0 | Погрешность ≤ 0.0098696044     
+Средний прямоугольник: 3.1415926536 | Погрешность ≤ 5.1677e-06"
+```
+
+
+## Структура
+Основной программный код находится в `lib/rectangle_integrator.rb`. В этой же папке в файле `error_estimator.rb` описан модуль `ErrorEstimator`, содержащий функции для вычисления погрешностей численных методов `right_rectangle`, `left_rectangle` и `mid_rectangle`.  
+
+В ходе разработки возникла естественная потребность в тестировании функций. Все тесты расположены в `/test/test_rectangle_integrator.rb`.
+Все желающие могут ознакомиться с тестами, скачав открытый код на свое локальное устройство. 
+
+Запустить тесты можо при помощи команды:
+```bash
+rake test
+```
+
+## Лицензия
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

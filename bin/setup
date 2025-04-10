@@ -9,4 +9,4 @@ chmod +x bin/console
 
 mkdir -p spec
 
-echo "Ready! Run ruby /bin/console (on windows) to start."
+echo "Ready! Run ruby /bin/console to start."
